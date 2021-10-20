@@ -19,7 +19,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> save(Person person) {
-        if (!personRepository.existsById(person.getId())) {
+        if (!alreadyExists(person)) {
             return Optional.of(personRepository.save(person));
         }
         return Optional.empty();
@@ -30,4 +30,7 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findById(id);
     }
 
+    private boolean alreadyExists(Person person) {
+        return personRepository.existsById(person.getId());
+    }
 }

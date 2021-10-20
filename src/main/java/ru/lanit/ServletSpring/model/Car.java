@@ -1,16 +1,26 @@
 package ru.lanit.ServletSpring.model;
 
+import ru.lanit.ServletSpring.validatior.MustBeOfAge;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car extends AbstractEntity {
 
-    @Column(nullable = false)
+    @NotNull
+    @Column
     private String model;
-    @Column(nullable = false)
+
+    @NotNull
+    @Column
+    @Min(1)
     private Integer horsepower;
-    @Column(nullable = false)
+
+    @NotNull
+    @Column
     private Long ownerId;
 
     public Car() {
