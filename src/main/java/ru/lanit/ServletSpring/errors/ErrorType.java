@@ -1,4 +1,4 @@
-package ru.lanit.ServletSpring.base;
+package ru.lanit.ServletSpring.errors;
 
 public enum ErrorType {
 

@@ -9,7 +9,7 @@ import ru.lanit.ServletSpring.exception.BadRequestException;
 import ru.lanit.ServletSpring.exception.NotFoundException;
 import ru.lanit.ServletSpring.entity.Person;
 import ru.lanit.ServletSpring.service.PersonService;
-import ru.lanit.ServletSpring.base.ErrorType;
+import ru.lanit.ServletSpring.errors.ErrorType;
 
 import javax.validation.Valid;
 
