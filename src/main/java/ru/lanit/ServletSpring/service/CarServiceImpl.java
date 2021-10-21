@@ -48,6 +48,11 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    @Override
+    public void deleteAll() {
+        carRepository.deleteAll();
+    }
+
     private boolean validation(Car car) {
         return !alreadyExists(car) && ownerIsOfAge(car.getOwnerId());
     }

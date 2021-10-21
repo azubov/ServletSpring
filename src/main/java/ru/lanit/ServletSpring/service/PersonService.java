@@ -13,4 +13,6 @@ public interface PersonService {
 
     PersonWithCarsDto getPersonWithCars(Long id);
 
+    void deleteAll();
+
 }

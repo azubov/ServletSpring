@@ -56,6 +56,11 @@ public class PersonServiceImpl implements PersonService {
         return new PersonWithCarsDto(person, cars);
     }
 
+    @Override
+    public void deleteAll() {
+        personRepository.deleteAll();
+    }
+
     private boolean alreadyExists(Person person) {
         return personRepository.existsById(person.getId());
     }
