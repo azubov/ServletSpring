@@ -1,5 +1,6 @@
 package ru.lanit.ServletSpring.dto;
 
+import ru.lanit.ServletSpring.entity.Car;
 import ru.lanit.ServletSpring.validator.ModelVendorFormat;
 
 import javax.persistence.Id;
@@ -33,6 +34,13 @@ public class CarDto {
         this.model = model;
         this.horsepower = horsepower;
         this.ownerId = ownerId;
+    }
+
+    public CarDto(Car car) {
+        this.id = car.getId();
+        this.model = car.getModel();
+        this.horsepower = car.getHorsepower();
+        this.ownerId = car.getOwnerId();
     }
 
     public Long getId() {

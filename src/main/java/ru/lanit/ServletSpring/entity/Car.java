@@ -1,7 +1,6 @@
 package ru.lanit.ServletSpring.entity;
 
 import ru.lanit.ServletSpring.dto.CarDto;
-import ru.lanit.ServletSpring.validator.ModelVendorFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,11 @@ public class Car extends AbstractEntity {
     @NotNull
     @NotEmpty
     @Column
-    @ModelVendorFormat
+    private String vendor;
+
+    @NotNull
+    @NotEmpty
+    @Column
     private String model;
 
     @NotNull
@@ -39,6 +42,7 @@ public class Car extends AbstractEntity {
 
     public Car(CarDto dto) {
         super.setId(dto.getId());
+        this.vendor = dto.getModel();
         this.model = dto.getModel();
         this.horsepower = dto.getHorsepower();
         this.ownerId = dto.getOwnerId();
@@ -66,6 +70,14 @@ public class Car extends AbstractEntity {
 
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
     }
 
     @Override

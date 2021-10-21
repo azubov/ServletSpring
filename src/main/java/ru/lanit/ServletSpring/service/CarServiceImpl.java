@@ -2,6 +2,7 @@ package ru.lanit.ServletSpring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.lanit.ServletSpring.dto.CarDto;
 import ru.lanit.ServletSpring.entity.Car;
 import ru.lanit.ServletSpring.entity.Person;
 import ru.lanit.ServletSpring.repository.CarRepository;
@@ -51,6 +52,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public void deleteAll() {
         carRepository.deleteAll();
+    }
+
+    @Override
+    public Optional<CarDto> getDto(Car car) {
+        return Optional.of(new CarDto(car));
     }
 
     private boolean validation(Car car) {

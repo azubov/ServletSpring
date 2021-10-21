@@ -23,14 +23,19 @@ public class CarController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<Car> save(@Valid @RequestBody CarDto dto) {
-        Car car = new Car(dto);
+    // get dto
+    // save car with vendor-model
+    // return dto of that car
 
-        return service.save(car).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
-                .orElseThrow(() -> new BadRequestException(
-                        String.format(ErrorType.ENTITY_NOT_SAVED.getDescription(), car)
-                ));
+    @PostMapping
+    public ResponseEntity<CarDto> save(@Valid @RequestBody CarDto dto) {
+        Car car = new Car(dto);
+        service.save(car);
+        if (service.save(car).isPresent()) {
+            return (ResponseEntity<CarDto>) new ResponseEntity(service.getDto(car), HttpStatus.OK);
+        } else {
+            throw new BadRequestException(String.format(ErrorType.ENTITY_NOT_SAVED.getDescription(), car));
+        }
     }
 
     @GetMapping
