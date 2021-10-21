@@ -37,23 +37,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public PersonWithCarsDto getPersonWithCars(Long id) {
-        Person person = null;
-        List<Car> cars = null;
+    public Optional<PersonWithCarsDto> getPersonWithCars(Long id) {
+        Person person;
+        List<Car> cars;
 
         if (getPerson(id).isPresent()) {
             person = getPerson(id).get();
         } else {
-            return null;
+            return Optional.empty();
         }
         if (getCarList(id).isPresent()) {
             cars = getCarList(id).get();
-            System.out.println(cars);
         } else {
-            return null;
+            return Optional.empty();
         }
 
-        return new PersonWithCarsDto(person, cars);
+        return Optional.of(new PersonWithCarsDto(person, cars));
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface PersonService {
 
     Optional<Person> get(Long id);
 
-    PersonWithCarsDto getPersonWithCars(Long id);
+    Optional<PersonWithCarsDto> getPersonWithCars(Long id);
 
     void deleteAll();
 

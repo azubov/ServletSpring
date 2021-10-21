@@ -42,11 +42,9 @@ public class PersonController {
 
     @GetMapping(value = "/personwithcars")
     public ResponseEntity<PersonWithCarsDto> getPersonWithCars(@RequestParam(name = "personid") Long id) {
-        PersonWithCarsDto personWithCars = service.getPersonWithCars(id);
-        if (personWithCars != null) {
-            return new ResponseEntity<PersonWithCarsDto>(personWithCars, HttpStatus.OK);
-        } else {
-            throw new NotFoundException(String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id));
-        }
+        return service.getPersonWithCars(id).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
+                .orElseThrow(() -> new NotFoundException(
+                        String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id)
+                ));
     }
 }
