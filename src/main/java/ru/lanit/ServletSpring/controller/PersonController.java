@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.lanit.ServletSpring.dto.PersonWithCarsDto;
 import ru.lanit.ServletSpring.exception.CustomException;
+import ru.lanit.ServletSpring.exception.NotFoundException;
 import ru.lanit.ServletSpring.model.Person;
 import ru.lanit.ServletSpring.service.PersonService;
 import ru.lanit.ServletSpring.base.ErrorType;
@@ -45,7 +46,7 @@ public class PersonController {
         if (personWithCars != null) {
             return new ResponseEntity<PersonWithCarsDto>(personWithCars, HttpStatus.OK);
         } else {
-            throw new CustomException(String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id));
+            throw new NotFoundException(String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id));
         }
     }
 }

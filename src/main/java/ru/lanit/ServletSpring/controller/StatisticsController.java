@@ -29,20 +29,10 @@ public class StatisticsController {
 
     @GetMapping
     public ResponseEntity<StatisticsDto> get() {
-        System.out.println("Hello from statistics");
-
         Long personCount = personRepository.count();
-        System.out.println(personCount);
-
         Long carCount = carRepository.count();
-        System.out.println(carCount);
-
         Long uniqueVendorCount = carService.countVendors();
-        System.out.println(uniqueVendorCount);
-
         StatisticsDto statistics = new StatisticsDto(personCount, carCount, uniqueVendorCount);
-        System.out.println(statistics);
-
         return new ResponseEntity<StatisticsDto>(statistics, HttpStatus.OK);
     }
 

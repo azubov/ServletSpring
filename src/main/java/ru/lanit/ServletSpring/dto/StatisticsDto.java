@@ -1,9 +1,14 @@
 package ru.lanit.ServletSpring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StatisticsDto {
 
+    @JsonProperty("personcount")
     private Long personCount;
+    @JsonProperty("carcount")
     private Long carCount;
+    @JsonProperty("uniquevendorcount")
     private Long uniqueVendorCount;
 
     public StatisticsDto() {
