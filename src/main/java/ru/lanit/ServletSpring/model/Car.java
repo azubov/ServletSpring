@@ -5,12 +5,14 @@ import ru.lanit.ServletSpring.validator.ModelVendorFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car extends AbstractEntity {
 
     @NotNull
+    @NotEmpty
     @Column
     @ModelVendorFormat
     private String model;

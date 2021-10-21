@@ -28,4 +28,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handle(ConstraintViolationException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ResponseBody
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<String> handle(NullPointerException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
