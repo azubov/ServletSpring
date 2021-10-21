@@ -30,7 +30,6 @@ public class CarController {
     @PostMapping
     public ResponseEntity<CarDto> save(@Valid @RequestBody CarDto dto) {
         Car car = new Car(dto);
-        service.save(car);
         if (service.save(car).isPresent()) {
             return (ResponseEntity<CarDto>) new ResponseEntity(service.getDto(car), HttpStatus.OK);
         } else {
