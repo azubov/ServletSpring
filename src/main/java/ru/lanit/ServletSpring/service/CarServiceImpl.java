@@ -25,7 +25,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Optional<Car> save(Car car) {
-        if (!alreadyExists(car) && ownerIsValid(car.getOwnerId())) {
+        if (validation(car)) {
             return Optional.of(carRepository.save(car));
         }
         return Optional.empty();
@@ -36,12 +36,16 @@ public class CarServiceImpl implements CarService {
         return carRepository.findById(id);
     }
 
+    private boolean validation(Car car) {
+        return !alreadyExists(car) && ownerIsOfAge(car.getOwnerId());
+    }
+
     private boolean alreadyExists(Car car) {
         return carRepository.existsById(car.getId());
     }
 
-    private boolean ownerIsValid(Long ownerId) {
-        if (repository.existsById(ownerId)) {
+    private boolean ownerIsOfAge(Long ownerId) {
+        if (ownerExists(ownerId)) {
             Optional<Person> optionalPerson = repository.findById(ownerId);
             Person person = optionalPerson.get();
             LocalDate currentDate = LocalDate.now();
@@ -50,4 +54,7 @@ public class CarServiceImpl implements CarService {
         return false;
     }
 
+    private boolean ownerExists(Long id) {
+        return repository.existsById(id);
+    }
 }

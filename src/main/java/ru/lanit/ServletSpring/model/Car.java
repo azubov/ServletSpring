@@ -1,6 +1,6 @@
 package ru.lanit.ServletSpring.model;
 
-import ru.lanit.ServletSpring.validatior.MustBeOfAge;
+import ru.lanit.ServletSpring.validator.ModelVendorFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ public class Car extends AbstractEntity {
 
     @NotNull
     @Column
+    @ModelVendorFormat
     private String model;
 
     @NotNull
