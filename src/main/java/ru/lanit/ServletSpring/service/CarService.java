@@ -1,6 +1,6 @@
 package ru.lanit.ServletSpring.service;
 
-import ru.lanit.ServletSpring.model.Car;
+import ru.lanit.ServletSpring.entity.Car;
 
 import java.util.Optional;
 

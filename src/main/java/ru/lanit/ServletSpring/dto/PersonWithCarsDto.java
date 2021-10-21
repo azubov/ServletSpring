@@ -2,8 +2,8 @@ package ru.lanit.ServletSpring.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import ru.lanit.ServletSpring.model.Car;
-import ru.lanit.ServletSpring.model.Person;
+import ru.lanit.ServletSpring.entity.Car;
+import ru.lanit.ServletSpring.entity.Person;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

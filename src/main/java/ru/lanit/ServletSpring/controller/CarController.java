@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.lanit.ServletSpring.base.ErrorType;
-import ru.lanit.ServletSpring.exception.CustomException;
-import ru.lanit.ServletSpring.model.Car;
+import ru.lanit.ServletSpring.dto.CarDto;
+import ru.lanit.ServletSpring.exception.BadRequestException;
+import ru.lanit.ServletSpring.entity.Car;
 import ru.lanit.ServletSpring.service.CarService;
 
 import javax.validation.Valid;
@@ -23,9 +24,11 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> save(@Valid @RequestBody Car car) {
+    public ResponseEntity<Car> save(@Valid @RequestBody CarDto dto) {
+        Car car = new Car(dto);
+
         return service.save(car).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
-                .orElseThrow(() -> new CustomException(
+                .orElseThrow(() -> new BadRequestException(
                         String.format(ErrorType.ENTITY_NOT_SAVED.getDescription(), car)
                 ));
     }
@@ -33,7 +36,7 @@ public class CarController {
     @GetMapping
     public ResponseEntity<Car> get(@RequestParam Long id) {
         return service.get(id).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
-                .orElseThrow(() -> new CustomException(
+                .orElseThrow(() -> new BadRequestException(
                         String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id)
                 ));
     }

@@ -3,8 +3,8 @@ package ru.lanit.ServletSpring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.ServletSpring.dto.PersonWithCarsDto;
-import ru.lanit.ServletSpring.model.Car;
-import ru.lanit.ServletSpring.model.Person;
+import ru.lanit.ServletSpring.entity.Car;
+import ru.lanit.ServletSpring.entity.Person;
 import ru.lanit.ServletSpring.repository.CarRepository;
 import ru.lanit.ServletSpring.repository.PersonRepository;
 

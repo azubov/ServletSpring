@@ -1,4 +1,4 @@
-package ru.lanit.ServletSpring.model;
+package ru.lanit.ServletSpring.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

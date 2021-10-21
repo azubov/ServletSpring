@@ -5,9 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.lanit.ServletSpring.dto.PersonWithCarsDto;
-import ru.lanit.ServletSpring.exception.CustomException;
+import ru.lanit.ServletSpring.exception.BadRequestException;
 import ru.lanit.ServletSpring.exception.NotFoundException;
-import ru.lanit.ServletSpring.model.Person;
+import ru.lanit.ServletSpring.entity.Person;
 import ru.lanit.ServletSpring.service.PersonService;
 import ru.lanit.ServletSpring.base.ErrorType;
 
@@ -27,7 +27,7 @@ public class PersonController {
     @PostMapping(value = "/person")
     public ResponseEntity<Person> save(@Valid @RequestBody Person person) {
         return service.save(person).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
-                .orElseThrow(() -> new CustomException(
+                .orElseThrow(() -> new BadRequestException(
                         String.format(ErrorType.ENTITY_NOT_SAVED.getDescription(), person)
                 ));
     }
@@ -35,7 +35,7 @@ public class PersonController {
     @GetMapping(value = "/person")
     public ResponseEntity<Person> get(@RequestParam Long id) {
         return service.get(id).map(p -> new ResponseEntity<>(p, HttpStatus.OK))
-                .orElseThrow(() -> new CustomException(
+                .orElseThrow(() -> new BadRequestException(
                         String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id)
                 ));
     }
