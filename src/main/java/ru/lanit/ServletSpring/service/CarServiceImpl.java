@@ -9,19 +9,18 @@ import ru.lanit.ServletSpring.repository.PersonRepository;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
-    private final PersonRepository repository;
+    private final PersonRepository personRepository;
 
     @Autowired
-    public CarServiceImpl(CarRepository carRepository, PersonRepository repository) {
+    public CarServiceImpl(CarRepository carRepository, PersonRepository personRepository) {
         this.carRepository = carRepository;
-        this.repository = repository;
+        this.personRepository = personRepository;
     }
 
     @Override
@@ -37,6 +36,18 @@ public class CarServiceImpl implements CarService {
         return carRepository.findById(id);
     }
 
+    @Override
+    public Long countVendors() {
+        Long vendorCount;
+        Optional<Long> optionalVendorCount = carRepository.vendorCount();
+        if (optionalVendorCount.isPresent()) {
+            vendorCount = optionalVendorCount.get();
+            return vendorCount;
+        } else {
+            return 0L;
+        }
+    }
+
     private boolean validation(Car car) {
         return !alreadyExists(car) && ownerIsOfAge(car.getOwnerId());
     }
@@ -47,7 +58,7 @@ public class CarServiceImpl implements CarService {
 
     private boolean ownerIsOfAge(Long ownerId) {
         if (ownerExists(ownerId)) {
-            Optional<Person> optionalPerson = repository.findById(ownerId);
+            Optional<Person> optionalPerson = personRepository.findById(ownerId);
             Person person = optionalPerson.get();
             LocalDate currentDate = LocalDate.now();
             return ChronoUnit.YEARS.between(person.getBirthdate(),currentDate) >= 18;
@@ -56,6 +67,6 @@ public class CarServiceImpl implements CarService {
     }
 
     private boolean ownerExists(Long id) {
-        return repository.existsById(id);
+        return personRepository.existsById(id);
     }
 }

@@ -4,7 +4,6 @@ import ru.lanit.ServletSpring.validator.ModelVendorFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 

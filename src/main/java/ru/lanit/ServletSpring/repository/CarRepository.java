@@ -14,4 +14,8 @@ public interface CarRepository extends CrudRepository<Car, Long> {
 
     @Query("FROM Car WHERE ownerId=:id")
     Optional<List<Car>> findAllCarsByOwnerId(@Param("id") Long id);
+
+    @Query("select count(*) From Car")
+    Optional<Long> vendorCount();
+
 }
