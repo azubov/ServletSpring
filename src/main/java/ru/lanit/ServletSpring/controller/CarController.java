@@ -23,10 +23,6 @@ public class CarController {
         this.service = service;
     }
 
-    // get dto
-    // save car with vendor-model
-    // return dto of that car
-
     @PostMapping
     public ResponseEntity<CarDto> save(@Valid @RequestBody CarDto dto) {
         Car car = new Car(dto);
@@ -44,5 +40,4 @@ public class CarController {
                         String.format(ErrorType.ENTITY_NOT_FOUND.getDescription(), id)
                 ));
     }
-
 }

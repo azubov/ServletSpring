@@ -16,9 +16,9 @@ import ru.lanit.ServletSpring.service.CarService;
 @RequestMapping("/statistics")
 public class StatisticsController {
 
-    PersonRepository personRepository;
-    CarRepository carRepository;
-    CarService carService;
+    private final PersonRepository personRepository;
+    private final CarRepository carRepository;
+    private final CarService carService;
 
     @Autowired
     public StatisticsController(PersonRepository personRepository, CarRepository carRepository, CarService carService) {

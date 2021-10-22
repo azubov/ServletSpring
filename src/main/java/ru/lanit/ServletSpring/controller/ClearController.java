@@ -12,8 +12,8 @@ import ru.lanit.ServletSpring.service.PersonService;
 @RequestMapping("/clear")
 public class ClearController {
 
-    PersonService personService;
-    CarService carService;
+    private final PersonService personService;
+    private final CarService carService;
 
     @Autowired
     public ClearController(PersonService personService, CarService carService) {

@@ -8,9 +8,9 @@ public class ModelVendorValidator implements ConstraintValidator<ModelVendorForm
 
     @Override
     public boolean isValid(String model, ConstraintValidatorContext constraintValidatorContext) {
-        String vendorPattern = "^([A-Za-z])[A-Za-z-]*";
+        String vendorPattern = "^([A-Za-z])[A-Za-z]*";
         String separator = "-";
-        String modelPattern = "[A-Za-z0-9]*";
+        String modelPattern = "[A-Za-z0-9-]*";
         return Pattern.matches(vendorPattern + separator + modelPattern, model) || model.equals("");
     }
 }

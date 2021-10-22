@@ -12,7 +12,7 @@ public class CarDto {
 
     @Id
     @NotNull
-    Long id;
+    private Long id;
 
     @NotNull
     @NotEmpty
@@ -27,13 +27,6 @@ public class CarDto {
     private Long ownerId;
 
     public CarDto() {
-    }
-
-    public CarDto(Long id, String model, Integer horsepower, Long ownerId) {
-        this.id = id;
-        this.model = model;
-        this.horsepower = horsepower;
-        this.ownerId = ownerId;
     }
 
     public CarDto(Car car) {
