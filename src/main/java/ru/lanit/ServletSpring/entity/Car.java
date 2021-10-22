@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.regex.Pattern;
 
 @Entity
 public class Car extends AbstractEntity {
@@ -43,17 +42,15 @@ public class Car extends AbstractEntity {
 
     public Car(CarDto dto) {
         super.setId(dto.getId());
-        this.vendor = dto.getModel();
-        this.model = parseModel(dto.getModel());
+        parseVendorModel(dto.getModel());
         this.horsepower = dto.getHorsepower();
         this.ownerId = dto.getOwnerId();
     }
 
-    private String parseModel(String dtoModel) {
-        String pattern = "^-[A-Za-z0-9]*";
-        String modelPattern = Pattern.compile(pattern).matcher(dtoModel).group();
-        System.out.println(modelPattern);
-        return modelPattern;
+    private void parseVendorModel(String dtoModel) {
+        int index = dtoModel.indexOf("-");
+        this.vendor = dtoModel.substring(0, index);
+        this.model = dtoModel.substring(index + 1);
     }
 
     public String getModel() {

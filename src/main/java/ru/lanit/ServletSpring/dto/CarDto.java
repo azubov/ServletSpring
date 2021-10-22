@@ -38,7 +38,7 @@ public class CarDto {
 
     public CarDto(Car car) {
         this.id = car.getId();
-        this.model = car.getModel();
+        this.model = car.getVendor() + "-" + car.getModel();
         this.horsepower = car.getHorsepower();
         this.ownerId = car.getOwnerId();
     }

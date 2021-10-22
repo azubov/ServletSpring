@@ -2,12 +2,14 @@ package ru.lanit.ServletSpring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.lanit.ServletSpring.dto.CarDto;
 import ru.lanit.ServletSpring.dto.PersonWithCarsDto;
 import ru.lanit.ServletSpring.entity.Car;
 import ru.lanit.ServletSpring.entity.Person;
 import ru.lanit.ServletSpring.repository.CarRepository;
 import ru.lanit.ServletSpring.repository.PersonRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +54,10 @@ public class PersonServiceImpl implements PersonService {
             return Optional.empty();
         }
 
-        return Optional.of(new PersonWithCarsDto(person, cars));
+        List<CarDto> carsDto = new ArrayList<>();
+        cars.forEach(car -> carsDto.add(new CarDto(car)));
+
+        return Optional.of(new PersonWithCarsDto(person, carsDto));
     }
 
     @Override
